@@ -1,0 +1,17 @@
+{
+  "name": "fleek",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit './*.spec.js'",
+    "start:dev": "node index"
+  },
+  "repository": "https://github.com/fabzer0/Fleek.git",
+  "author": "fabischolasi <fabischapeli97@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^6.2.0"
+  }
+}
