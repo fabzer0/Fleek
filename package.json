@@ -6,22 +6,37 @@
   "author": "fabischolasi <fabischapeli97@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --exit './test/**/*.spec.js'",
-    "start:dev": "node ./express/index",
-    "create:db": "psql fleek -f ./src/database/tables.sql",
-    "drop:db": "psql fleek -f ./src/database/drop.sql"
+    "test": "nyc --reporter=html --reporter=text mocha --exit './src/__tests__/**/*.spec.js'",
+    "start:dev": "NODE_ENV=development DEBUG=log nodemon ./express/app",
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:rollmigrate": "yarn db:rollback && yarn db:migrate && yarn db:seed"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
+    "cls-hooked": "^4.2.2",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^3.0.1",
+    "debug": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "logger": "^0.0.1",
     "mocha": "^6.2.0",
+    "morgan": "^1.9.1",
     "nyc": "^14.1.1",
-    "pg": "^7.11.0"
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sendgrid": "^5.2.3",
+    "sequelize": "^5.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/register": "^7.5.5"
+    "@babel/register": "^7.5.5",
+    "nodemon": "^1.19.1",
+    "sequelize-cli": "^5.5.0"
   }
 }
