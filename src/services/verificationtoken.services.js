@@ -18,6 +18,18 @@ class VerificationServices {
       return e
     })
   }
+
+  static async findToken(token) {
+    const verificationToken = await VerificationToken.findOne({
+      where: { token }
+    })
+
+    if (!verificationToken) {
+      return undefined
+    }
+
+    return verificationToken.dataValues
+  }
 }
 
 

@@ -23,6 +23,36 @@ class UserService {
 
     return user
   }
+
+  static async _findByUsername(username) {
+    const user = await User.findOne({
+      where: { username }
+    })
+    
+    if (!user) {
+      return undefined
+    }
+
+    return user.dataValues
+  }
+
+  static async _findByEmail(email) {
+    const user = await User.findOne({
+      where: { email }
+    })
+
+    if (!user) {
+      return undefined
+    }
+
+    return user.dataValues
+  }
+
+  static async updateIsVerified(id) {
+    const user = await User.findByk(id)
+    user.update({ isVerified: true })
+    return user.dataValues
+  }
 }
 
 module.exports = UserService

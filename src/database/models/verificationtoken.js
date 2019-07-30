@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     token: DataTypes.STRING,
   }, {});
-  VerificationToken.associate = function(models) {
+  VerificationToken.associate = models => {
     VerificationToken.belongsTo(models.User, {
       as: 'user',
       foreignKey: 'userId',
