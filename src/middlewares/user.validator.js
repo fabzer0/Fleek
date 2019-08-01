@@ -46,6 +46,12 @@ class UserValidator {
 
     return null
   }
+
+  static validateLoginCreds(req, _, next) {
+    const { body } = req
+    GeneralValidator.trimAllInputs(body, 'username', 'password')
+    return next()
+  }
 }
 
 module.exports = UserValidator

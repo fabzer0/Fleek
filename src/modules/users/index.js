@@ -13,4 +13,10 @@ userRouter.post(
   UserController.createUser
 )
 
+userRouter.post(
+  '/login',
+  UserValidator.validateLoginCreds,
+  UserController.signInUser
+)
+
 module.exports = userRouter
