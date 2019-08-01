@@ -6,7 +6,8 @@
   "author": "fabischolasi <fabischapeli97@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --exit './src/__tests__/**/*.spec.js'",
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text --all mocha --exit './src/**/*.spec.js'",
+    "lint": "eslint .",
     "start:dev": "NODE_ENV=development DEBUG=log nodemon ./express/app",
     "db:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
@@ -31,12 +32,21 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sendgrid": "^5.2.3",
-    "sequelize": "^5.10.2"
+    "sequelize": "^5.10.2",
+    "sinon": "^7.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/register": "^7.5.5",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.19.1",
-    "sequelize-cli": "^5.5.0"
+    "sequelize-cli": "^5.5.0",
+    "supertest": "^4.0.2"
   }
 }

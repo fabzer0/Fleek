@@ -1,9 +1,9 @@
 require('dotenv').config()
-const express =  require('express') 
-const morgan = require('morgan') 
-const bodyParser = require('body-parser') 
+const express = require('express')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const cors = require('cors')
-const debug = require('debug')  
+const debug = require('debug')
 const modules = require('../src/modules')
 
 /* Setting up the express application */
@@ -19,10 +19,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/', (req, res) => {
-  res.send('ci with travis')
-})
-
 /* Setting up the base url for the whole application */
 modules(app)
 
@@ -35,4 +31,4 @@ app.listen(port, () => {
   logger(`Find me on http://localhost:${port}`)
 })
 
-modules.exports = app 
+module.exports = app

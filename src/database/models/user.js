@@ -4,40 +4,40 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      type: DataTypes.INTEGER 
+      type: DataTypes.INTEGER
     },
     username: {
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING 
+      type: DataTypes.STRING
     },
     email: {
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING 
+      type: DataTypes.STRING
     },
-    password: { 
-      allowNull: false, 
-      type: DataTypes.STRING 
+    password: {
+      allowNull: false,
+      type: DataTypes.STRING
     },
-    country: { 
-      allowNull: true, 
-      type: DataTypes.STRING 
+    country: {
+      allowNull: true,
+      type: DataTypes.STRING
     },
-    city: { 
-      allowNull: true, 
-      type: DataTypes.STRING 
+    city: {
+      allowNull: true,
+      type: DataTypes.STRING
     },
-    isVerified: { 
-      type: DataTypes.BOOLEAN 
-    } 
-  }, {});
+    isVerified: {
+      type: DataTypes.BOOLEAN
+    }
+  }, {})
   User.associate = models => {
     User.hasOne(models.VerificationToken, {
-      as: 'verificationToken', 
+      as: 'verificationToken',
       foreignKey: 'userId',
-      foreignKeyConstraint: true,
+      foreignKeyConstraint: true
     })
-  };
-  return User;
-};
+  }
+  return User
+}

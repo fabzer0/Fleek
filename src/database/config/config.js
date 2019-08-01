@@ -23,4 +23,4 @@ const database = {
 }
 
 /* DO NOT CHANGE EVER!!! */
-module.exports = database 
+module.exports = database
