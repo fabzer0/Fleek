@@ -21,9 +21,7 @@ class VerificationServices {
 
   static async findToken(token) {
     const verificationToken = await VerificationToken.findOne({
-      where: { token }
-    })
-
+      where: { token } })
     if (!verificationToken) {
       return undefined
     }

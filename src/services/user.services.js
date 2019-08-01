@@ -25,14 +25,10 @@ class UserService {
   }
 
   static async _findByUsername(username) {
-    const user = await User.findOne({
-      where: { username }
-    })
-    
+    const user = await User.findOne({ where: { username } })
     if (!user) {
       return undefined
     }
-
     return user.dataValues
   }
 

@@ -17,12 +17,31 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING 
       },
-      password: { allowNull: false, type: Sequelize.STRING },
-      country: { allowNull: true, type: Sequelize.STRING },
-      city: { allowNull: true, type: Sequelize.STRING },
-      isVerified: { type: Sequelize.BOOLEAN },
-      createdAt: { allowNull: false, type: Sequelize.DATE },
-      updatedAt: { allowNull: false, type: Sequelize.DATE }
+      password: { 
+        allowNull: false, 
+        type: Sequelize.STRING 
+      },
+      country: { 
+        allowNull: true, 
+        type: Sequelize.STRING 
+      },
+      city: { 
+        allowNull: true, 
+        type: Sequelize.STRING 
+      },
+      isVerified: { 
+        type: Sequelize.BOOLEAN 
+      },
+      createdAt: { 
+        allowNull: false, 
+        type: Sequelize.DATE 
+      },
+      updatedAt: { 
+        allowNull: false, 
+        type: Sequelize.DATE 
+      }
+    }).then(() => {
+      console.log('Created Users table')
     })
   },
   down: queryInterface => {

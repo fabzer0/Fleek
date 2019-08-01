@@ -9,7 +9,10 @@ class VerificationHelper {
       path: '/v3/mail/send',
       body: {
         personalizations: [
-          { to: [{ email: to }], subject: 'Verify Your Email' }
+          { 
+            to: [{ email: to }], 
+            subject: 'Verify Your Email' 
+          }
         ],
         from: { email: 'no-reply@example.com' },
         content: [
