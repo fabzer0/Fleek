@@ -22,6 +22,7 @@ class GeneralValidator {
     props.forEach(prop => {
       body[prop].trim()
     })
+    return true
   }
 
   static validateUsername(username) {

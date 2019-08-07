@@ -4,7 +4,7 @@ const VerificationController = require('../emailVerification/verification.contro
 const verificationRouter = Router()
 
 verificationRouter.get(
-  '/verification',
+  '/verify',
   VerificationController.verifyEmail
 )
 

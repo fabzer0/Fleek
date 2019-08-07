@@ -14,9 +14,9 @@ module.exports = {
         onDelete: 'cascade',
         references: { model: 'Users', key: 'id' }
       },
-      token: { 
-        type: Sequelize.STRING, 
-        allowNull: false 
+      token: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -26,14 +26,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }).then(() => { 
-      console.log('Created VerificationToken table') 
+    }).then(() => {
+      console.log('Created VerificationToken table')
     })
   },
   down: queryInterface => {
     return queryInterface.dropTable('VerificationTokens')
-    .then(() => {
-      console.log('VerificationTokens table dropped')
-    })
+      .then(() => {
+        console.log('VerificationTokens table dropped')
+      })
   }
-};
+}

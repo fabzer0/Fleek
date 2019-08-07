@@ -5,40 +5,40 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER 
+        type: Sequelize.INTEGER
       },
       username: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
       email: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
-      password: { 
-        allowNull: false, 
-        type: Sequelize.STRING 
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
-      country: { 
-        allowNull: true, 
-        type: Sequelize.STRING 
+      country: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
-      city: { 
-        allowNull: true, 
-        type: Sequelize.STRING 
+      city: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
-      isVerified: { 
-        type: Sequelize.BOOLEAN 
+      isVerified: {
+        type: Sequelize.BOOLEAN
       },
-      createdAt: { 
-        allowNull: false, 
-        type: Sequelize.DATE 
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       },
-      updatedAt: { 
-        allowNull: false, 
-        type: Sequelize.DATE 
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     }).then(() => {
       console.log('Created Users table')
@@ -46,7 +46,7 @@ module.exports = {
   },
   down: queryInterface => {
     return queryInterface.dropTable('Users').then(() => {
-      console.log('Users table dropped');
+      console.log('Users table dropped')
     })
   }
-};
+}

@@ -2,24 +2,25 @@ const crypto = require('crypto-random-string')
 const VerificationHelper = require('../helpers/sendgrid.helper')
 const models = require('../database/models')
 
-const { VerificationToken } = models 
+const { VerificationToken } = models
 
 class VerificationServices {
-  static sendEmailToken(id, email) {
-    VerificationToken.create({
-      userId: id,
-      token: crypto({ length: 16, type: 'base64' })
-    }).then((result) => {
+  static async sendEmailToken (id, email) {
+    try {
+      const result = await VerificationToken.create({
+        userId: id,
+        token: crypto({ length: 16, type: 'base64' })
+      })
+
       const { dataValues: { token } } = result
-      VerificationHelper.sendVerificationEmail(email, token)
-    })
-    .catch((e) => {
+      await VerificationHelper.sendVerificationEmail(email, token)
+    } catch (e) {
       console.log(e)
       return e
-    })
+    }
   }
 
-  static async findToken(token) {
+  static async findToken (token) {
     const verificationToken = await VerificationToken.findOne({
       where: { token } })
     if (!verificationToken) {
@@ -29,7 +30,5 @@ class VerificationServices {
     return verificationToken.dataValues
   }
 }
-
-
 
 module.exports = VerificationServices

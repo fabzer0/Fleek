@@ -1,8 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
   const VerificationToken = sequelize.define('VerificationToken', {
-    userId: DataTypes.INTEGER,
-    token: DataTypes.STRING,
-  }, {});
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    token: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {})
   VerificationToken.associate = models => {
     VerificationToken.belongsTo(models.User, {
       as: 'user',
@@ -10,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKeyConstraint: true,
       onDelete: 'CASCADE'
     })
-  };
+  }
 
-  return VerificationToken;
-};
+  return VerificationToken
+}

@@ -1,4 +1,4 @@
-require('dotenv').config() 
+require('dotenv').config()
 
 const env = {
   PORT: process.env.PORT || 3000,
@@ -7,4 +7,4 @@ const env = {
   NODE_ENV: process.env.NODE_ENV || 'production'
 }
 
-module.exports = env 
+module.exports = env

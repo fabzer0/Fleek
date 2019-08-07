@@ -2,10 +2,10 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const { APP_SECRET } = require('../../utils')
 const UserService = require('../../services/user.services')
-const VerificationServices =  require('../../services/verificationtoken.services')
+const VerificationServices = require('../../services/verificationtoken.services')
 
 class VerificationController {
-  static async verifyEmail(req, res) {
+  static async verifyEmail (req, res) {
     const { query: { email, token } } = req
     try {
       const user = await UserService._findByEmail(email)
@@ -31,6 +31,5 @@ class VerificationController {
     }
   }
 }
-
 
 module.exports = VerificationController
