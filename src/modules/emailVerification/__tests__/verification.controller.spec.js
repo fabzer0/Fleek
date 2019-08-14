@@ -25,8 +25,8 @@ describe('VerificationController', () => {
     }
     // error = new Error()
     const { dataValues: { id, username } } = await User.create({
-      username: 'rollplanes_',
-      email: 'fabish.olasi@andela.com',
+      username: 'rollplanes',
+      email: 'fabischapeli97@gmail.com',
       password: 'Testuser#3',
       country: 'Kenya',
       city: 'Nairobi'
@@ -46,7 +46,7 @@ describe('VerificationController', () => {
       where: { userId: id }
     })
     const token = getToken.dataValues.token
-    verificationUrl = `/api/v1/verify?token=${token}&email=fabish.olasi@andela.com`
+    verificationUrl = `/api/v1/verify?token=${token}&email=fabischapeli97@gmail.com`
     invalidEmailUrl = `/api/v1/verify?token=${token}&email=fabisch.apeli@andela.com`
     invalidTokenUrl = `/api/v1/verify?token=${token}&email=enock.olasi@andela.com`
     user = username

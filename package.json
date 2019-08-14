@@ -6,8 +6,8 @@
   "author": "fabischolasi <fabischapeli97@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text --all mocha --exit './src/**/*.spec.js'",
-    "lint": "eslint .",
+    "pretest": "NODE_ENV=test yarn run db:rollmigrate",
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text --all mocha --exit './src/**/*.spec.js' --timeout 10000",
     "start:dev": "NODE_ENV=development DEBUG=log nodemon ./express/app",
     "db:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
@@ -38,13 +38,6 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/register": "^7.5.5",
-    "eslint": "^6.1.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.19.1",
     "sequelize-cli": "^5.5.0",
     "supertest": "^4.0.2"
