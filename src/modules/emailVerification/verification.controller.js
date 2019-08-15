@@ -1,8 +1,8 @@
-require('dotenv').config()
-const jwt = require('jsonwebtoken')
-const { APP_SECRET } = require('../../utils')
-const UserService = require('../../services/user.services')
-const VerificationServices = require('../../services/verificationtoken.services')
+import jwt from 'jsonwebtoken'
+import log from 'fancy-log'
+import { APP_SECRET } from '../../utils'
+import UserService from '../../services/user.services'
+import VerificationServices from '../../services/verificationtoken.services'
 
 class VerificationController {
   static async verifyEmail (req, res) {
@@ -24,7 +24,7 @@ class VerificationController {
       return res.status(200).json({
         message: `${updatedUser.username} has been verified`, tokenGeneration })
     } catch (e) {
-      console.log(e)
+      log(e)
       return res.status(403).json({
         error: 'Verification failed'
       })
@@ -32,4 +32,4 @@ class VerificationController {
   }
 }
 
-module.exports = VerificationController
+export default VerificationController

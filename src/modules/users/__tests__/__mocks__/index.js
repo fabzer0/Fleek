@@ -21,7 +21,7 @@ const invalidUsername = {
   password: 'testuser#3'
 }
 
-module.exports = {
+export {
   registerPayload,
   loginPayload,
   wrongPWD,

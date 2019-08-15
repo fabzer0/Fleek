@@ -1,4 +1,5 @@
 require('dotenv').config()
+import log from 'fancy-log'
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
 
 class VerificationHelper {
@@ -8,12 +9,7 @@ class VerificationHelper {
       method: 'POST',
       path: '/v3/mail/send',
       body: {
-        personalizations: [
-          {
-            to: [{ email: to }],
-            subject: 'Verify Your Email'
-          }
-        ],
+        personalizations: [{ to: [{ email: to }], subject: 'Verify Your Email'}],
         from: { email: 'no-reply@example.com' },
         content: [
           {
@@ -29,7 +25,7 @@ class VerificationHelper {
         return response
       })
       .catch(_err => {
-        console.log(_err)
+        log(_err)
         return _err
       })
   }

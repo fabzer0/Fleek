@@ -67,7 +67,7 @@ const req7 = {
 
 const props = ['username', 'email', 'password', 'country', 'city']
 
-module.exports = {
+export {
   req1,
   req2,
   req3,

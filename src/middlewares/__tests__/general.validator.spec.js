@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const GeneralValidator = require('../general.validator');
-const { req1, req2, props } = require('./__mocks__');
+import { expect } from 'chai' 
+import GeneralValidator from '../general.validator'
+import { req1, req2, props } from './__mocks__'
 
 
 describe('GeneralValidator', () => {

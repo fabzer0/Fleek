@@ -1,5 +1,5 @@
-const { Router } = require('express')
-const VerificationController = require('../emailVerification/verification.controller')
+import { Router } from 'express'
+import VerificationController from '../emailVerification/verification.controller'
 
 const verificationRouter = Router()
 
@@ -8,4 +8,4 @@ verificationRouter.get(
   VerificationController.verifyEmail
 )
 
-module.exports = verificationRouter
+export default verificationRouter

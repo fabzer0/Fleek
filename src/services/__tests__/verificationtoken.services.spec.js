@@ -1,5 +1,5 @@
-const { expect } = require('chai')
-const VerificationServices = require('../verificationtoken.services')
+import { expect } from 'chai'
+import VerificationServices from '../verificationtoken.services'
 
 describe('VerificationServices', () => {
   describe('sendEmailToken', () => {

@@ -54,4 +54,4 @@ class GeneralValidator {
   }
 }
 
-module.exports = GeneralValidator 
+export default GeneralValidator 

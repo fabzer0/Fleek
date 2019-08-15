@@ -1,15 +1,11 @@
-require('dotenv').config()
-const express = require('express')
 const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const debug = require('debug')
-const modules = require('../src/modules')
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import modules from '../src/modules'
 
 /* Setting up the express application */
 const app = express()
-const logger = debug('log')
-const port = parseInt(process.env.PORT, 10) || 3000
 
 /* Log requests to the console */
 app.use(morgan('dev'))
@@ -27,8 +23,4 @@ app.use('*', (req, res) => res.status(404).json({
   message: 'Not Found. Use /api/v1 to access the api'
 }))
 
-app.listen(port, () => {
-  logger(`Find me on http://localhost:${port}`)
-})
-
-module.exports = app
+export default app

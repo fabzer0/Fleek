@@ -1,6 +1,6 @@
-const crypto = require('crypto-random-string')
-const VerificationHelper = require('../helpers/sendgrid.helper')
-const models = require('../database/models')
+import crypto from 'crypto-random-string'
+import VerificationHelper from '../helpers/sendgrid.helper'
+import models from '../database/models'
 
 const { VerificationToken } = models
 
@@ -15,7 +15,7 @@ class VerificationServices {
       const { dataValues: { token } } = result
       await VerificationHelper.sendVerificationEmail(email, token)
     } catch (e) {
-      console.log(e)
+      log(e)
       return e
     }
   }
@@ -31,4 +31,4 @@ class VerificationServices {
   }
 }
 
-module.exports = VerificationServices
+export default VerificationServices

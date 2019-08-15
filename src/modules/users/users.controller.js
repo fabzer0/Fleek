@@ -1,8 +1,9 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const UserService = require('../../services/user.services')
-const VerificationServices = require('../../services/verificationtoken.services')
-const { APP_SECRET } = require('../../utils')
+import bcrypt from 'bcryptjs'
+import log from 'fancy-log'
+import jwt from 'jsonwebtoken'
+import UserService from '../../services/user.services'
+import VerificationServices from '../../services/verificationtoken.services'
+import { APP_SECRET } from '../../utils'
 
 class UserController {
   static async createUser (req, res) {
@@ -20,7 +21,7 @@ class UserController {
       }
       return res.status(409).json({ message: 'Username and Email must be unique' })
     } catch (e) {
-      console.log(e)
+      log(e)
       return res.status(500).json({
         message: 'Could not complete request. Try Again!'
       })
@@ -45,17 +46,14 @@ class UserController {
       }
       const token = jwt.sign({ userId: user.id }, APP_SECRET)
       return res.status(200).json({
-        success: true,
         message: 'Successful login',
         token
       })
     } catch (e) {
-      console.log(e)
-      return res.status(500).json({
-        error: 'There could be a problem with the server'
-      })
+      log(e)
+      return res.status(500).json({ error: 'There could be a problem with the server' })
     }
   }
 }
 
-module.exports = UserController
+export default UserController

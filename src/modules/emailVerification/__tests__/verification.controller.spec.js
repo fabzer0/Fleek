@@ -1,13 +1,13 @@
-const request = require('supertest')
-const jwt = require('jsonwebtoken')
-const { stub } = require('sinon')
-const crypto = require('crypto-random-string')
-const { expect } = require('chai')
-const app = require('../../../../express/app')
-const models = require('../../../database/models')
-const { APP_SECRET } = require('../../../utils')
+import request from 'supertest'
+import jwt from 'jsonwebtoken'
+import { stub } from 'sinon'
+import crypto from 'crypto-random-string'
+import { expect } from 'chai'
+import app from '../../../../express/app'
+import models from '../../../database/models'
+import { APP_SECRET } from '../../../utils'
 // const UserService = require('../../../services/user.services')
-const VerificationServices = require('../../../services/verificationtoken.services')
+import VerificationServices from '../../../services/verificationtoken.services'
 
 const { User, VerificationToken } = models
 
