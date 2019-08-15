@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-expressions */
-const { expect } = require('chai')
-const { spy, stub } = require('sinon')
-const UserValidator = require('../user.validator')
-const {
+import { expect } from 'chai'
+import { spy, stub } from 'sinon'
+import UserValidator from '../user.validator'
+import {
   req1, req3, req4, req5, req6, req7
-} = require('./__mocks__')
+} from './__mocks__'
 
 describe('UserValidator', () => {
   let mockResponse,

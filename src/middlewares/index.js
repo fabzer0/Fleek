@@ -1,7 +1,7 @@
-const UserValidator = require('./user.validator')
+import UserValidator from './user.validator'
 
 const middlewares = {
   UserValidator,
 }
 
-module.exports = middlewares
+export default middlewares

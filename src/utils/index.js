@@ -1,3 +1,4 @@
+require('dotenv').config()
 const APP_SECRET = process.env.APP_SECRET
 
 module.exports = {

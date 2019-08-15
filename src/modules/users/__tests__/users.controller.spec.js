@@ -1,15 +1,15 @@
-const request = require('supertest')
-const { stub } = require('sinon')
-const { expect } = require('chai')
-const app = require('../../../../express/app')
-const UserService = require('../../../services/user.services')
-const {
+import request from 'supertest'
+import { stub } from 'sinon'
+import { expect } from 'chai'
+import app from '../../../../express/app'
+import UserService from '../../../services/user.services'
+import {
   registerPayload,
   loginPayload,
   wrongPWD,
   invalidUsername
-} = require('../__tests__/__mocks__')
-const models = require('../../../database/models')
+} from '../__tests__/__mocks__'
+import models from '../../../database/models'
 
 const { User } = models
 
@@ -87,7 +87,6 @@ describe('UserController', () => {
           .set(headers)
           .expect(200, (_err, res) => {
             expect(res.statusCode).to.equal(200)
-            expect(res.body.success).to.equal(true)
             expect(res.body.message).to.equal('Successful login')
             // Add expect statement for token returned
             done()

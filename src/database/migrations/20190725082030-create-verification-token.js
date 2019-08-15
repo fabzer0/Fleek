@@ -28,12 +28,30 @@ module.exports = {
       }
     }).then(() => {
       console.log('Created VerificationToken table')
-    })
+      return queryInterface.sequelize.query(`
+        CREATE FUNCTION expire_token_func() RETURNS TRIGGER AS $$
+          BEGIN
+            DELETE FROM "VerificationTokens" WHERE "createdAt" < NOW() - INTERVAL '1 day';
+            RETURN NULL;
+          END; 
+        $$ LANGUAGE plpgsql;
+        
+        CREATE TRIGGER expire_token 
+        AFTER INSERT 
+        ON "VerificationTokens"
+        FOR EACH ROW 
+        EXECUTE FUNCTION expire_token_func();
+      `)
+    }).then(() => { console.log('expireToken event created') })
   },
   down: queryInterface => {
     return queryInterface.dropTable('VerificationTokens')
       .then(() => {
         console.log('VerificationTokens table dropped')
-      })
+        return queryInterface.sequelize.query(`
+          DROP FUNCTION IF EXISTS expire_token_func();
+          DROP TRIGGER IF EXISTS expire_token ON "VerificationTokens";
+        `)
+      }).then(() => { console.log('expireToken event dropped') })
   }
 }

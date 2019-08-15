@@ -1,37 +1,32 @@
 require('dotenv').config()
-const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
-
+const nodemailer = require('nodemailer')
 class VerificationHelper {
   static async sendVerificationEmail (to, token) {
     const hostUrl = process.env.HOST_URL
-    const request = sg.emptyRequest({
-      method: 'POST',
-      path: '/v3/mail/send',
-      body: {
-        personalizations: [
-          {
-            to: [{ email: to }],
-            subject: 'Verify Your Email'
-          }
-        ],
-        from: { email: 'no-reply@example.com' },
-        content: [
-          {
-            type: 'text/plain',
-            value: `Click on this link to verify your email ${hostUrl}/verify?token=${token}&email=${to}`
-          }
-        ]
+    const URL = `${hostUrl}/verify?token=${token}&email=${to}`
+    const transporter = await nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'fabischapeli97@gmail.com',
+        pass: 'mymoments'
       }
     })
 
-    return sg.API(request)
-      .then(response => {
-        return response
-      })
-      .catch(_err => {
+    const mailOptions = {
+      from: 'fabischapeli97@gmail.com',
+      to,
+      subject: 'Account Verification',
+      text: 'Verify your email address to activate account',
+      html: URL
+    }
+
+    await transporter.sendMail(mailOptions, (_err, info) => {
+      if (_err) {
         console.log(_err)
-        return _err
-      })
+      }
+      console.log(`Email sent: ${info.response}`)
+      return info.response
+    })
   }
 }
 

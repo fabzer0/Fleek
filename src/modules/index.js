@@ -1,5 +1,5 @@
-const userRouter = require('./users')
-const verificationRouter = require('./emailVerification')
+import userRouter from './users'
+import verificationRouter from './emailVerification'
 
 const apiPrefix = '/api/v1'
 
@@ -10,4 +10,4 @@ const routes = (app) => {
   return app
 }
 
-module.exports = routes 
+export default routes 

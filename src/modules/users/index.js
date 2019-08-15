@@ -1,11 +1,10 @@
-const { Router } = require('express')
-const UserController = require('./users.controller')
-const middlewares = require('../../middlewares')
+import { Router } from 'express'
+import UserController from './users.controller'
+import middlewares from '../../middlewares'
 
 const { UserValidator } = middlewares
 
 const userRouter = Router()
-
 
 userRouter.post(
   '/register',
@@ -19,4 +18,4 @@ userRouter.post(
   UserController.signInUser
 )
 
-module.exports = userRouter
+export default userRouter

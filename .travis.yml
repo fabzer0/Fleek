@@ -1,17 +1,23 @@
 language: node_js
 node_js:
   - "stable"
+services:
+  - postgresql
 addons:
     code_climate:
         repo_token:
            secure: 90bd89c116b6b2ede952fb07218aa15c98812f4f2f058ea2732b1ef017fe7316
-script: ./node_modules/.bin/nyc --reporter=lcov --all ./node_modules/mocha/bin/mocha --exit './src/**/*.spec.js' --require @babel/register
+script: ./node_modules/.bin/nyc --reporter=lcov ./node_modules/mocha/bin/mocha --exit './src/**/*.spec.js' --require @babel/register
 before_script:
+  - psql -c 'create database fleek;' -U postgres
+  - node_modules/.bin/sequelize db:migrate:undo:all
+  - node_modules/.bin/sequelize db:migrate
+  - node_modules/.bin/sequelize db:seed:all
   - yarn add codeclimate-test-reporter nyc -g
 after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info
 cache:
   directories:
     - "node_modules"
-notifications: 
+notifications:
   email: false

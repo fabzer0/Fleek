@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs')
-const { Op } = require('sequelize')
-const models = require('../database/models')
+import bcrypt from 'bcryptjs'
+import { Op } from 'sequelize'
+import models from '../database/models'
 
 const { User } = models
 
@@ -44,6 +44,18 @@ class UserService {
     return user.dataValues
   }
 
+  static async _findByEmail (email) {
+    const user = await User.findOne({
+      where: { email }
+    })
+
+    if (!user) {
+      return undefined
+    }
+
+    return user.dataValues
+  }
+
   static async updateIsVerified (id) {
     const user = await User.findByPk(id)
     user.update({ isVerified: true })
@@ -51,4 +63,4 @@ class UserService {
   }
 }
 
-module.exports = UserService
+export default UserService
