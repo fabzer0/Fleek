@@ -4,12 +4,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
-    bio: DataTypes.TEXT,
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     phone: {
       unique: true,
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true
     },
-    gender: DataTypes.STRING
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   }, {})
   Profile.associate = models => {
     Profile.belongsTo(models.User, {
