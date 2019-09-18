@@ -1,6 +1,6 @@
-require('dotenv').config()
-const APP_SECRET = process.env.APP_SECRET
+import { APP_SECRET, appendToken } from './auth'
 
 module.exports = {
   APP_SECRET,
+  appendToken
 }

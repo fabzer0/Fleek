@@ -2,13 +2,15 @@ require('dotenv').config()
 const nodemailer = require('nodemailer')
 class VerificationHelper {
   static async sendVerificationEmail (to, token) {
+    const email = process.env.GMAIL_EMAIL
+    const pwd = process.env.GMAIL_PWD
     const hostUrl = process.env.HOST_URL
     const URL = `${hostUrl}/verify?token=${token}&email=${to}`
     const transporter = await nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: 'fabischapeli97@gmail.com',
-        pass: 'mymoments'
+        user: email,
+        pass: pwd
       }
     })
 

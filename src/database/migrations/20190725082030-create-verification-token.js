@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     }).then(() => {
-      console.log('Created VerificationToken table')
+      console.log('Created VerificationTokens table')
       return queryInterface.sequelize.query(`
         CREATE FUNCTION expire_token_func() RETURNS TRIGGER AS $$
           BEGIN

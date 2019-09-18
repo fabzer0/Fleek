@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import { Op } from 'sequelize'
 import models from '../database/models'
 
-const { User } = models
+const { Follower, User, ProfilePicture, Profile, Post } = models
 
 class UserService {
   static async _findOrCreateUser (username, email, password, country, city) {
@@ -17,7 +17,7 @@ class UserService {
         country,
         city,
         password: hashPWD
-      },
+      }
     })
     delete user.dataValues['password']
 
@@ -29,6 +29,15 @@ class UserService {
     if (!user) {
       return undefined
     }
+    return user.dataValues
+  }
+
+  static async _findByPk (id) {
+    const user = await User.findByPk(id)
+    if (!user) {
+      return undefined
+    }
+
     return user.dataValues
   }
 
@@ -60,6 +69,23 @@ class UserService {
     const user = await User.findByPk(id)
     user.update({ isVerified: true })
     return user.dataValues
+  }
+
+  static async _loadUserDetails (id) {
+    const user = await User.findOne({
+      where: { id },
+      include: [
+        { model: ProfilePicture, as: 'profPic' },
+        { model: Profile, as: 'profile' },
+        { model: Post, as: 'posts' },
+        { model: Follower, as: 'followers' },
+        { model: Follower, as: 'following' }
+      ],
+      order: [ [{ model: Post, as: 'posts'}, 'createdAt', 'DESC' ] ]
+    })
+    delete user.dataValues['password']
+
+    return user
   }
 }
 

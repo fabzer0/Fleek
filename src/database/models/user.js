@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    id: {
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-      type: DataTypes.INTEGER
-    },
     username: {
       allowNull: false,
       unique: true,
@@ -38,6 +32,45 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       foreignKeyConstraint: true
     })
+    User.hasOne(models.Profile, {
+      as: 'profile',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
+    User.hasMany(models.Post, {
+      as: 'posts',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
+    User.hasMany(models.Follower, {
+      as: 'following',
+      foreignKey: 'userId'
+    })
+    User.hasMany(models.Follower, {
+      as: 'followers',
+      foreignKey: 'followId'
+    })
+    User.hasMany(models.Star, {
+      as: 'stars',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
+    User.hasMany(models.Comment, {
+      as: 'comments',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
+    User.hasMany(models.CommentReply, {
+      as: 'commentsReplied',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
+    User.hasOne(models.ProfilePicture, {
+      as: 'profPic',
+      foreignKey: 'userId',
+      foreignKeyConstraint: true
+    })
   }
+
   return User
 }

@@ -43,10 +43,17 @@ class UserController {
           message: 'You must activate/verify your account to login'
         })
       }
-      const token = jwt.sign({ userId: user.id }, APP_SECRET)
-      return res.status(200).json({
-        message: 'Successful login',
-        token
+      jwt.sign({ user }, APP_SECRET, { expiresIn: '30 days' }, (err, token) => {
+        if (err) {
+          console.log(err)
+          return res.status(400).json({
+            message: 'Could not generate token',
+          })
+        }
+        return res.status(200).json({
+          message: 'Successful login',
+          token
+        })
       })
     } catch (e) {
       console.log(e)
