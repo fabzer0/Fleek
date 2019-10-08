@@ -81,7 +81,11 @@ class UserService {
         { model: Follower, as: 'followers' },
         { model: Follower, as: 'following' }
       ],
+<<<<<<< HEAD
       order: [ [{ model: Post, as: 'posts'}, 'createdAt', 'DESC' ] ]
+=======
+      order: [ [{ model: Post, as: 'posts' }, 'createdAt', 'DESC' ] ]
+>>>>>>> (ft-profile): craft user profile [Finishes #167806636]
     })
     delete user.dataValues['password']
 

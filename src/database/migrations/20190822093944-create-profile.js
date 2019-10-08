@@ -14,12 +14,19 @@ module.exports = {
         onDelete: 'cascade',
         references: { model: 'Users', key: 'id' }
       },
-      bio: Sequelize.TEXT,
+      bio: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
       phone: {
         unique: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
       },
-      gender: Sequelize.STRING,
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
