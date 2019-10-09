@@ -4,8 +4,8 @@ class VerificationHelper {
   static async sendVerificationEmail(to, token) {
     const email = process.env.GMAIL_EMAIL;
     const pwd = process.env.GMAIL_PWD;
-    const hostUrl = process.env.HOST_URL;
-    const URL = `${hostUrl}/verify?token=${token}&email=${to}`;
+    const baseUrl = process.env.BASE_URL;
+    const URL = `${baseUrl}/verify?token=${token}&email=${to}`;
     const transporter = await nodemailer.createTransport({
       service: "Gmail",
       auth: {

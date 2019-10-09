@@ -2,7 +2,7 @@ const morgan = require("morgan");
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import modules from "../src/modules";
+import modules from "./modules";
 
 /* Setting up the express application */
 const app = express();
