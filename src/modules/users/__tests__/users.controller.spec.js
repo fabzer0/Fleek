@@ -1,7 +1,7 @@
 import request from "supertest";
 import { stub } from "sinon";
 import { expect } from "chai";
-import app from "../../../../express/app";
+import app from "../../../app";
 import UserService from "../../../services/user.services";
 import {
   registerPayload,

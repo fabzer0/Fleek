@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/fabzer0/Fleek.git",
+  "keywords": [
+    "videos",
+    "trending"
+  ],
   "author": "fabischolasi <fabischapeli97@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build-server": "babel src --out-dir dist",
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "yarn run clean && yarn run build-server",
+    "serve": "node dist/index.js",
+    "start": "NODE_ENV=production yarn run build && yarn run serve",
     "pretest": "NODE_ENV=test yarn run db:rollmigrate",
     "watch:test": "yarn test -- -w",
     "nyc:report": "nyc --reporter=html --reporter=lcov --reporter=text",
     "test": "NODE_ENV=test yarn nyc:report mocha --exit './src/**/*.spec.js' --require @babel/register --timeout 10000",
-    "start:dev": "NODE_ENV=development DEBUG=log nodemon --exec babel-node ./express/index",
+    "start:dev": "NODE_ENV=development DEBUG=log nodemon --exec babel-node ./src/index",
     "db:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all",
@@ -53,5 +62,8 @@
     "nodemon": "^1.19.1",
     "sequelize-cli": "^5.5.0",
     "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

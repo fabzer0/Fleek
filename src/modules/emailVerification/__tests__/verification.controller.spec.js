@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { stub } from "sinon";
 import crypto from "crypto-random-string";
 import { expect } from "chai";
-import app from "../../../../express/app";
+import app from "../../../app";
 import models from "../../../database/models";
 import { APP_SECRET } from "../../../utils";
 // const UserService = require('../../../services/user.services')
