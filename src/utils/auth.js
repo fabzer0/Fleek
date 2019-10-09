@@ -16,3 +16,12 @@ export const appendToken = (req, res, next) => {
     message: "You are not authorized"
   });
 };
+
+export const mailConfig = {
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  redirectURI: process.env.GOOGLE_REDIRECT_URI,
+  refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+  gmailAccount: process.env.GMAIL_ACCOUNT,
+  baseUrl: process.env.BASE_URL
+}
