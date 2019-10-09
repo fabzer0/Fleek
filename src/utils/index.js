@@ -1,6 +1,6 @@
-import { APP_SECRET, appendToken } from './auth'
+import { APP_SECRET, appendToken } from "./auth";
 
 module.exports = {
   APP_SECRET,
   appendToken
-}
+};

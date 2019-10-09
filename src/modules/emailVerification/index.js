@@ -1,11 +1,8 @@
-import { Router } from 'express'
-import VerificationController from '../emailVerification/verification.controller'
+import { Router } from "express";
+import VerificationController from "../emailVerification/verification.controller";
 
-const verificationRouter = Router()
+const verificationRouter = Router();
 
-verificationRouter.get(
-  '/verify',
-  VerificationController.verifyEmail
-)
+verificationRouter.get("/verify", VerificationController.verifyEmail);
 
-export default verificationRouter
+export default verificationRouter;

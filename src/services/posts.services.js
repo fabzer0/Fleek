@@ -1,35 +1,31 @@
-import models from '../database/models'
+import models from "../database/models";
 
-const { Post } = models
+const { Post } = models;
 
 class PostService {
-  static async _createPost (userId, video) {
+  static async _createPost(userId, video) {
     const [post] = await Post.findOrCreate({
       where: { video },
       defaults: {
         userId,
         video
       }
-    })
+    });
 
-    return post
+    return post;
   }
 
-  static async _deletePost (postId) {
+  static async _deletePost(postId) {
     await Post.destroy({
       where: { id: postId }
-    })
+    });
 
-    return 'Success'
+    return "Success";
   }
 
-  static async _loadPosts() {
+  static async _loadPosts() {}
 
-  }
-
-  static async _loadSinglePost(post_id) {
-    
-  }
+  static async _loadSinglePost(post_id) {}
 }
 
-export default PostService
+export default PostService;
