@@ -1,33 +1,52 @@
 require("dotenv").config();
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
+import { google } from "googleapis";
+import { mailConfig } from "../utils/auth";
+
+const OAuth2 = google.auth.OAuth2;
+
 class VerificationHelper {
   static async sendVerificationEmail(to, token) {
-    const email = process.env.GMAIL_EMAIL;
-    const pwd = process.env.GMAIL_PWD;
-    const baseUrl = process.env.BASE_URL;
-    const URL = `${baseUrl}/verify?token=${token}&email=${to}`;
-    const transporter = await nodemailer.createTransport({
-      service: "Gmail",
+    const { clientID, clientSecret, redirectURI, refreshToken, gmailAccount, baseUrl } = mailConfig;
+    const oauth2Client = new OAuth2(clientID, clientSecret, redirectURI);
+    oauth2Client.setCredentials({
+      refresh_token: refreshToken
+    });
+    const accessToken = oauth2Client.getAccessToken();
+    const smtpTransport = nodemailer.createTransport({
+      service: 'gmail',
       auth: {
-        user: email,
-        pass: pwd
+        type: 'OAuth2',
+        user: gmailAccount,
+        clientId: clientID,
+        clientSecret,
+        refreshToken,
+        accessToken
       }
     });
 
+    const URL = `${baseUrl}/verify?token=${token}&email=${to}`;
+    console.log(URL);
+
     const mailOptions = {
-      from: "fabischapeli97@gmail.com",
+      from: gmailAccount,
       to,
       subject: "Account Verification",
-      text: "Verify your email address to activate account",
-      html: URL
+      generateTextFromHTML: true,
+      html: `
+          <div style="height: 100%; width: 100%; margin: 0; padding: 0; color: black; background-color: white">
+            <h3>Kindly click on the link below to activate your account</h3>
+            <h3>Click this link ${URL}</h3>      
+          </div>
+      `
     };
 
-    await transporter.sendMail(mailOptions, (_err, info) => {
+    await smtpTransport.sendMail(mailOptions, (_err, info) => {
       if (_err) {
         console.log(_err);
       }
       console.log(`Email sent: ${info.response}`);
-      return info.response;
+      smtpTransport.close();
     });
   }
 }

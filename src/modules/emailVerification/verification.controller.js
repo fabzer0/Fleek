@@ -45,7 +45,7 @@ class VerificationController {
         }
       );
     } catch (e) {
-      log(e);
+      console.log(e);
       return res.status(403).json({
         error: "Verification failed"
       });
