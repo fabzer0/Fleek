@@ -1,27 +1,27 @@
-import models from '../database/models'
+import models from "../database/models";
 
-const { ProfilePicture } = models 
+const { ProfilePicture } = models;
 
 class ProfilePictureService {
-  static async _populateProfPic (userId) {
+  static async _populateProfPic(userId) {
     const profPic = await ProfilePicture.create({
       userId
-    })
+    });
 
-    return profPic
+    return profPic;
   }
 
-  static async _modifyProfPic (userId, image) {
+  static async _modifyProfPic(userId, image) {
     try {
       const profPic = await ProfilePicture.findOne({
         where: { userId }
-      })
-      profPic.update({ image })
-      
-      return profPic.dataValues
+      });
+      profPic.update({ image });
+
+      return profPic.dataValues;
     } catch (e) {
-      console.log(e)
-      return 'Sequelize Error'
+      console.log(e);
+      return "Sequelize Error";
     }
   }
 
@@ -34,4 +34,4 @@ class ProfilePictureService {
   // }
 }
 
-export default ProfilePictureService
+export default ProfilePictureService;

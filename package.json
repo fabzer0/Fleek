@@ -44,7 +44,9 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.10.2",
-    "sinon": "^7.3.2"
+    "sinon": "^7.3.2",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",

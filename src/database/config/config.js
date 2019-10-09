@@ -1,11 +1,11 @@
-const env = require('./environment')
+const env = require("./environment");
 
 const defaultConfig = {
   databaseUrl: env.DATABASE_URL,
-  dialect: env.DATABASE_DIALECT || 'postgres',
+  dialect: env.DATABASE_DIALECT || "postgres",
   logging: false,
-  use_env_variable: 'DATABASE_URL'
-}
+  use_env_variable: "DATABASE_URL"
+};
 
 const database = {
   development: {
@@ -20,7 +20,7 @@ const database = {
   production: {
     ...defaultConfig
   }
-}
+};
 
 /* DO NOT CHANGE EVER!!! */
-module.exports = database
+module.exports = database;

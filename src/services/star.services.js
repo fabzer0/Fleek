@@ -1,27 +1,27 @@
-import { Op } from 'sequelize'
-import models from '../database/models'
+import { Op } from "sequelize";
+import models from "../database/models";
 
-const { Star } = models
+const { Star } = models;
 
 class StarService {
-  static async _star (userId, postId) {
+  static async _star(userId, postId) {
     const starred = await Star.create({
       userId,
       postId
-    })
+    });
 
-    return starred.dataValues
+    return starred.dataValues;
   }
 
-  static async _unstar (userId, postId) {
+  static async _unstar(userId, postId) {
     await Star.destroy({
       where: {
         [Op.and]: [{ userId }, { postId }]
       }
-    })
+    });
 
-    return 'Sucess'
+    return "Sucess";
   }
 }
 
-export default StarService
+export default StarService;

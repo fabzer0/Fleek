@@ -1,22 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-  const VerificationToken = sequelize.define('VerificationToken', {
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+  const VerificationToken = sequelize.define(
+    "VerificationToken",
+    {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      token: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
     },
-    token: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  }, {})
+    {}
+  );
   VerificationToken.associate = models => {
     VerificationToken.belongsTo(models.User, {
-      as: 'user',
-      foreignKey: 'userId',
+      as: "user",
+      foreignKey: "userId",
       foreignKeyConstraint: true,
-      onDelete: 'CASCADE'
-    })
-  }
+      onDelete: "CASCADE"
+    });
+  };
 
-  return VerificationToken
-}
+  return VerificationToken;
+};

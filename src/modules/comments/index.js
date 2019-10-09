@@ -1,13 +1,35 @@
-import { Router } from 'express'
-import CommentsController from './comments.controller'
-import { appendToken } from '../../utils/auth';
+import { Router } from "express";
+import CommentsController from "./comments.controller";
+import { appendToken } from "../../utils/auth";
 
-const commentsRouter = Router()
+const commentsRouter = Router();
 
-commentsRouter.use(
-  '/comment',
-  appendToken,
-  CommentsController.makeComment
-)
+commentsRouter.post("/comment", appendToken, CommentsController.makeComment);
 
-export default commentsRouter
+/**
+ * @swagger
+ * /comment?postId={id}:
+ *  post:
+ *    summary: creates a comment
+ *    tags:
+ *      - Comments
+ *    parameters:
+ *      - name: body
+ *        in: body
+ *        required: true
+ *        type: string
+ *        schema:
+ *          type: object
+ *          required:
+ *            - comment
+ *          properties:
+ *            comment:
+ *              type: string
+ *    responses:
+ *      201:
+ *        description: commented
+ *      400:
+ *        description: something went wrong.
+ */
+
+export default commentsRouter;

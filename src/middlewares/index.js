@@ -1,7 +1,7 @@
-import UserValidator from './user.validator'
+import UserValidator from "./user.validator";
 
 const middlewares = {
-  UserValidator,
-}
+  UserValidator
+};
 
-export default middlewares
+export default middlewares;
