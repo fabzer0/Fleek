@@ -26,7 +26,7 @@
     "db:rollmigrate": "yarn db:rollback && yarn db:migrate && yarn db:seed"
   },
   "dependencies": {
-    "@babel/cli": "^7.5.5",
+    "@babel/cli": "^7.12.0",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
