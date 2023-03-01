@@ -54,7 +54,7 @@
     "nyc": "^14.1.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.19.5",
+    "sequelize": "^6.29.0",
     "sequelize-cli": "^5.5.1",
     "sinon": "^7.3.2",
     "swagger-jsdoc": "^3.4.0",
