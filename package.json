@@ -26,7 +26,7 @@
     "db:rollmigrate": "yarn db:rollback && yarn db:migrate && yarn db:seed"
   },
   "dependencies": {
-    "@babel/cli": "^7.5.5",
+    "@babel/cli": "^7.12.0",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
@@ -47,7 +47,7 @@
     "googleapis": "^43.0.0",
     "jsonwebtoken": "^8.5.1",
     "logger": "^0.0.1",
-    "mocha": "^6.2.0",
+    "mocha": "^10.6.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "nodemailer": "^6.3.0",
